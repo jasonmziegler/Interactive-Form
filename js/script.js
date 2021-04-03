@@ -1,6 +1,23 @@
 // Javascript Goes here
 
-// Store Form Elements in variables
+// Store Form Elements in variables // const Element = document.getElementById('');
+const nameElement = document.getElementById('name');
+const emailElement = document.getElementById('email');
+const jobRoleElement = document.getElementById('jobRole');
+const otherRoleElement = document.getElementById('otherRole');
+const sizeElement = document.getElementById('size');
+const designElement = document.getElementById('design');
+const colorElement = document.getElementById('color');
+const checkboxElements = document.querySelectorAll('input["type=checkbox"]');
+const paymentMethodElement = document.getElementById('payment');
+const ccExpireMonthElement = document.getElementById('exp-month');
+const ccExpireYearElement = document.getElementById('exp-year');
+const ccCardNumberElement = document.getElementById('cc-num');
+const ccZipCodeElement = document.getElementById('zip');
+const ccCVVElement = document.getElementById('cvv');
+const payPalInfoBlock = document.getElementById('paypal');
+const bitcoinInfoBlock = document.getElementById('bitcoin');
+
 
 // create ValidationPass and ValidationFail functions that update the valid and error CSS 
 
