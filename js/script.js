@@ -4,7 +4,7 @@
 const nameElement = document.getElementById('name');
 const emailElement = document.getElementById('email');
 const jobRoleElement = document.getElementById('jobRole');
-const otherRoleElement = document.getElementById('otherRole');
+const otherRoleElement = document.getElementById('other-job-role');
 const sizeElement = document.getElementById('size');
 const designElement = document.getElementById('design');
 const colorElement = document.getElementById('color');
@@ -15,6 +15,7 @@ const ccExpireYearElement = document.getElementById('exp-year');
 const ccCardNumberElement = document.getElementById('cc-num');
 const ccZipCodeElement = document.getElementById('zip');
 const ccCVVElement = document.getElementById('cvv');
+const creditCardBlock = document.getElementById('credit-card');
 const payPalInfoBlock = document.getElementById('paypal');
 const bitcoinInfoBlock = document.getElementById('bitcoin');
 
@@ -86,7 +87,11 @@ emailElement.addEventListener('keyup', (e)=>{
 // add on focus to the checkbox elements for accessibility
 
 //hide other job role
+otherRoleElement.style.display = "none";
 // hide credit card fields
+creditCardBlock.style.display = "none";
 // hide Paypal helper text
+payPalInfoBlock.style.display = "none";
 // hide Bitcoin helper text
+bitcoinInfoBlock.style.display = "none";
 // set focus to the name field
