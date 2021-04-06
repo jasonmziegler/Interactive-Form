@@ -3,7 +3,7 @@
 // Store Form Elements in variables // const Element = document.getElementById('');
 const nameElement = document.getElementById('name');
 const emailElement = document.getElementById('email');
-const jobRoleElement = document.getElementById('jobRole');
+const jobRoleElement = document.getElementById('title');
 const otherRoleElement = document.getElementById('other-job-role');
 const sizeElement = document.getElementById('size');
 const designElement = document.getElementById('design');
@@ -81,6 +81,15 @@ emailElement.addEventListener('keyup', (e)=>{
     // test if true of false and call Validation Pass or Validation Fail Functions
 });
 
+jobRoleElement.addEventListener('change', (e) => {
+    let roleSelection = e.target.value;
+    console.log(roleSelection);
+    if (roleSelection==='other') {
+        e.target.nextElementSibling.style.display = "inherit";
+    } else {
+        e.target.nextElementSibling.style.display = "none";
+    }
+});
 // Add event Listener for form submit
 // preventDefault if one of the validation functions comes back false
 
