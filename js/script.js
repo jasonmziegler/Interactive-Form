@@ -90,6 +90,38 @@ jobRoleElement.addEventListener('change', (e) => {
         e.target.nextElementSibling.style.display = "none";
     }
 });
+
+designElement.addEventListener('change', (e) => {
+ let designSelection = e.target.value;
+ let colorOptions = colorElement.children;
+//  console.log(colorOptions);
+//  console.log(designSelection);
+ if (designSelection === 'js puns') {
+    colorElement.removeAttribute('disabled');
+    for (let i = 0; i < colorOptions.length; i++) {
+        let option = colorOptions[i];
+        if (option.getAttribute('data-theme') === 'js puns') {
+            option.removeAttribute('hidden');
+            // console.log(option);
+        } else {
+            option.setAttribute('hidden', true);
+            // console.log(option);
+        }
+    }
+ } else if (designSelection === 'heart js') {
+    colorElement.removeAttribute('disabled');
+    for (let i = 0; i < colorOptions.length; i++) {
+        let option = colorOptions[i];
+        if (option.getAttribute('data-theme') === 'heart js') {
+            option.removeAttribute('hidden');
+            // console.log(option);
+        } else {
+            option.setAttribute('hidden', true);
+            // console.log(option);
+        }
+    }
+ }
+});
 // Add event Listener for form submit
 // preventDefault if one of the validation functions comes back false
 
@@ -103,4 +135,7 @@ creditCardBlock.style.display = "none";
 payPalInfoBlock.style.display = "none";
 // hide Bitcoin helper text
 bitcoinInfoBlock.style.display = "none";
-// set focus to the name field
+// TODO: set focus to the name field
+
+/// Disable colorElement until Design Selected
+colorElement.setAttribute('disabled', 'disabled');
