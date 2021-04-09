@@ -195,6 +195,32 @@ document.querySelector('#activities-box').addEventListener('change', (e) => {
     }
 });
 
+ccExpireMonthElement.addEventListener('change', (e) => {
+    let value = e.target.value;
+    isValidExpirationMonth(value);
+});
+
+
+ccExpireYearElement.addEventListener('change', (e) => {
+    let value = e.target.value;
+    isValidExpirationYear(value);
+});
+
+ccCardNumberElement.addEventListener('keyup', (e) => {
+    let value = e.target.value;
+    isValidCCNumber(value);
+});
+
+ccZipCodeElement.addEventListener('keyup', (e) => {
+    let value = e.target.value;
+    isValidZipCode(value);
+});
+
+ccCVVElement.addEventListener('keyup', (e) => {
+    let value = e.target.value;
+    isValidCVVNumber(value);
+});
+
 paymentMethodElement.addEventListener('change', (e) => {
   let paymentSelection = e.target.value;
   console.log('Payment Selection', paymentSelection);
