@@ -92,6 +92,8 @@ jobRoleElement.addEventListener('change', (e) => {
 });
 
 designElement.addEventListener('change', (e) => {
+    // https://stackoverflow.com/questions/7373058/changing-the-selected-option-of-an-html-select-element/7373115
+    colorElement.selectedIndex = 0;
  let designSelection = e.target.value;
  let colorOptions = colorElement.children;
 //  console.log(colorOptions);
@@ -114,9 +116,11 @@ designElement.addEventListener('change', (e) => {
         let option = colorOptions[i];
         if (option.getAttribute('data-theme') === 'heart js') {
             option.removeAttribute('hidden');
+            //option.setAttribute('disabled', false);
             // console.log(option);
         } else {
             option.setAttribute('hidden', true);
+            //option.setAttribute('disabled', true);
             // console.log(option);
         }
     }
