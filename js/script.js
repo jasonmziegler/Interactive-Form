@@ -174,6 +174,25 @@ document.querySelector('#activities-box').addEventListener('change', (e) => {
     }
 });
 
+paymentMethodElement.addEventListener('change', (e) => {
+  let paymentSelection = e.target.value;
+  console.log('Payment Selection', paymentSelection);
+
+  if (paymentSelection === 'credit-card') {
+    creditCardBlock.style.display = "inherit";
+    payPalInfoBlock.style.display = "none";
+    bitcoinInfoBlock.style.display = "none";
+
+  } else if (paymentSelection === 'paypal') {
+    creditCardBlock.style.display = "none";
+    payPalInfoBlock.style.display = "inherit";
+    bitcoinInfoBlock.style.display = "none";
+  } else if (paymentSelection === 'bitcoin') {
+    creditCardBlock.style.display = "none";
+    payPalInfoBlock.style.display = "none";
+    bitcoinInfoBlock.style.display = "inherit";
+  }
+});
 // Add event Listener for form submit
 // preventDefault if one of the validation functions comes back false
 
