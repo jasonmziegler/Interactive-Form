@@ -122,6 +122,54 @@ designElement.addEventListener('change', (e) => {
     }
  }
 });
+
+// Checkboxes
+let checkoutTotal = 0;
+// Create a variable to store all of the checkboxes
+let checkboxes = document.querySelectorAll('#activities-box > Label > input[type="checkbox"]');
+// Create Event listener for checkboxes
+document.querySelector('#activities-box').addEventListener('change', (e) => {
+//  created a clicked variable and store e.target
+
+    let clicked = e.target;
+    if (clicked.type === 'checkbox') {
+// get the data-day-and-time attribute value and store in a clickedType variable
+        let clickedType = e.target.getAttribute('data-day-and-time');
+        console.log('Clicked Target: ', clicked);
+        console.log('Clicked Type: ', clickedType);
+    // Loop over the checkboxes
+        for (let i = 0; i < checkboxes.length; i++) {
+    // create a variable to store the current iteration's dataype
+            let checkboxType = checkboxes[i].getAttribute('data-day-and-time');
+    // Create if statement to disable/enable the other items with the same data-day-and-time datatype (make sure don't disable checkbox that was just clicked)
+            if (clickedType === checkboxType && clicked !== checkboxes[i]) {
+    // inside previous if create if check to see if the box is being checked or unchecked .checked (true or false)
+                if (clicked.checked) {
+                    checkboxes[i].disabled = true;
+                } else {
+    // set disable propery to the checkboxes[i] to true if being checked and false if being unchecked
+                    checkboxes[i].disabled = false;
+                }
+            }
+        }
+        
+        // Handle Total 
+        // see if clicked.check
+        let courseCost = parseInt(clicked.getAttribute('data-cost')); 
+        let checkoutTotalDisplay = document.querySelector('p#activities-cost');
+        if (clicked.checked) {
+            //get cost of course           
+            // Add course cost to total
+            checkoutTotal += courseCost;
+            // update the p#activities-cost with new total       
+            
+        } else {
+            checkoutTotal -= courseCost;
+        }
+        checkoutTotalDisplay.textContent = `Total: $${checkoutTotal}`;
+    }
+});
+
 // Add event Listener for form submit
 // preventDefault if one of the validation functions comes back false
 
