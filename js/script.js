@@ -159,6 +159,19 @@ designElement.addEventListener('change', (e) => {
 let checkoutTotal = 0;
 // Create a variable to store all of the checkboxes
 let checkboxes = document.querySelectorAll('#activities-box > Label > input[type="checkbox"]');
+
+document.querySelector('#activities-box').addEventListener('focus', (e) => {
+    let clicked = e.target;
+    if (clicked.type === 'checkbox') {
+        clicked.classList.add('focus');
+    }
+});
+document.querySelector('#activities-box').addEventListener('blur', (e) => {
+    let clicked = e.target;
+    if (clicked.type === 'checkbox') {
+        clicked.classList.remove('focus');
+    }
+});
 // Create Event listener for checkboxes
 document.querySelector('#activities-box').addEventListener('change', (e) => {
 //  created a clicked variable and store e.target
@@ -298,6 +311,6 @@ payPalInfoBlock.style.display = "none";
 // hide Bitcoin helper text
 bitcoinInfoBlock.style.display = "none";
 // TODO: set focus to the name field
-
+nameElement.focus();
 /// Disable colorElement until Design Selected
 colorElement.setAttribute('disabled', 'disabled');
