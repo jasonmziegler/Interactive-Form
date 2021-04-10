@@ -1,6 +1,7 @@
 // Javascript Goes here
 
 // Store Form Elements in variables // const Element = document.getElementById('');
+const form = document.querySelector('form');
 const nameElement = document.getElementById('name');
 const emailElement = document.getElementById('email');
 const jobRoleElement = document.getElementById('title');
@@ -159,6 +160,7 @@ designElement.addEventListener('change', (e) => {
 let checkoutTotal = 0;
 // Create a variable to store all of the checkboxes
 let checkboxes = document.querySelectorAll('#activities-box > Label > input[type="checkbox"]');
+// add on focus to the checkbox elements for accessibility
 for (let i = 0; i < checkboxes.length; i++) {
     checkboxes[i].addEventListener('focus', (e) => {
         let focused = e.target;
@@ -202,6 +204,7 @@ document.querySelector('#activities-box').addEventListener('change', (e) => {
         let courseCost = parseInt(clicked.getAttribute('data-cost')); 
         let checkoutTotalDisplay = document.querySelector('p#activities-cost');
         if (clicked.checked) {
+            document.getElementById('activities-hint').classList.add('hint');
             //get cost of course           
             // Add course cost to total
             checkoutTotal += courseCost;
@@ -297,9 +300,56 @@ paymentMethodElement.addEventListener('change', (e) => {
   }
 });
 // Add event Listener for form submit
+form.addEventListener('submit', (e) => {
+    console.log('Form Submitted Attempt!');
+    if (checkoutTotal === 0) {
+        console.log('No Activities Prevented Submission');
+        document.getElementById('activities-hint').classList.remove('hint');
+        document.getElementById('activities-hint').style.color = 'red';
+        e.preventDefault();
+    }
+    if (!isValidName(nameElement.value)) {
+        console.log('Invalid Name Prevented Submission');
+        validationFail(nameElement);
+        e.preventDefault();
+    }
+
+    if (!isValidEmail(emailElement.value)) {
+        console.log('Invalid email Prevented Submission');
+        validationFail(emailElement);
+        e.preventDefault();
+    }
+    if (paymentMethodElement.value === 'credit-card') {
+        if (!isValidExpirationMonth(ccExpireMonthElement.value)) {
+            console.log('Invalid expriation month Prevented Submission');
+            validationFail(ccExpireMonthElement);
+            e.preventDefault();
+        }
+        if (!isValidExpirationYear(ccExpireYearElement.value)) {
+            console.log('Invalid expiration Year Prevented Submission');
+            validationFail(ccExpireYearElement);
+            e.preventDefault();
+        }
+        if (!isValidCCNumber(ccCardNumberElement.value)) {
+            console.log('Invalid CC number Prevented Submission');
+            validationFail(ccCardNumberElement);
+            e.preventDefault();
+        }
+        if (!isValidZipCode(ccZipCodeElement.value)) {
+            console.log('Invalid Zip Code Prevented Submission');
+            validationFail(ccZipCodeElement);
+            e.preventDefault();
+        }
+        if (!isValidCVVNumber(ccCVVElement.value)) {
+            console.log('Invalid CVV Prevented Submission');
+            validationFail(ccCVVElement);
+            e.preventDefault();
+        }       
+    }
+});
 // preventDefault if one of the validation functions comes back false
 
-// add on focus to the checkbox elements for accessibility
+
 
 //hide other job role
 otherRoleElement.style.display = "none";
@@ -309,7 +359,7 @@ creditCardBlock.style.display = "none";
 payPalInfoBlock.style.display = "none";
 // hide Bitcoin helper text
 bitcoinInfoBlock.style.display = "none";
-// TODO: set focus to the name field
+// set focus to the name field
 nameElement.focus();
 /// Disable colorElement until Design Selected
 colorElement.setAttribute('disabled', 'disabled');
