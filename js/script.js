@@ -28,14 +28,14 @@ function validationPass(domObject) {
     let hint = domObject.nextElementSibling;
     if (hint != null && hint.classList.contains('hint')) {
         hint.style.display = "none";
-        console.log(hint.style.display);
+        //console.log(hint.style.display);
     }
 }
 function validationFail(domObject) {
-    console.log('failed!', domObject);
+    //console.log('failed!', domObject);
     domObject.classList.add('error');
     let hint = domObject.nextElementSibling;
-    console.log(hint);
+    //console.log(hint);
     if (hint != null && hint.classList.contains('hint')) {
         hint.style.display = "inherit";
     }
@@ -54,29 +54,29 @@ function isValidEmail(email) {
 }
 
 function isValidExpirationMonth(expirationMonth) {
-    console.log('Check for Valid Expiration Month');
+    //console.log('Check for Valid Expiration Month');
     //https://stackoverflow.com/questions/32435949/regex-to-allow-only-number-between-1-to-12
     return /1[0-2]|[1-9]/.test(expirationMonth);
 }
 
 function isValidExpirationYear(expirationYear) {
-    console.log('Check for Valid Expiration Year');
+    //console.log('Check for Valid Expiration Year');
     //https://stackoverflow.com/questions/4374185/regular-expression-match-to-test-for-a-valid-year
     return /^\d{4}$/.test(expirationYear);
 }
 
 function isValidCCNumber(ccNumber) {
-    console.log('Check for Valid CC');
+    //console.log('Check for Valid CC');
     return /^\d{13}\d?\d?\d?$/.test(ccNumber);
 }
 
 function isValidCVVNumber(cvvNumber) {
-    console.log('Check for Valid CVV');
+    //console.log('Check for Valid CVV');
     return /^\d{3}$/.test(cvvNumber);
 }
 
 function isValidZipCode(zipCode) {
-    console.log('Check for Valid ZipCode');
+    //console.log('Check for Valid ZipCode');
     return /^\d{5}$/.test(zipCode);
 }
 
@@ -87,7 +87,7 @@ function isValidZipCode(zipCode) {
 nameElement.addEventListener('keyup', (e)=>{
     let nameInputHTML = e.target;
     let nameInput = e.target.value;
-    console.log(nameInput);
+    //console.log(nameInput);
     if (isValidName(nameInput)) {
         validationPass(nameInputHTML);
     } else {
@@ -98,7 +98,7 @@ nameElement.addEventListener('keyup', (e)=>{
 emailElement.addEventListener('keyup', (e)=>{
     let emailInputHTML = e.target;
     let emailInput = e.target.value;
-    console.log(emailInput);
+    //console.log(emailInput);
     if (isValidEmail(emailInput)) {
         validationPass(emailInputHTML);
     } else {
@@ -112,7 +112,7 @@ emailElement.addEventListener('keyup', (e)=>{
 
 jobRoleElement.addEventListener('change', (e) => {
     let roleSelection = e.target.value;
-    console.log(roleSelection);
+    //console.log(roleSelection);
     if (roleSelection==='other') {
         e.target.nextElementSibling.style.display = "inherit";
     } else {
@@ -164,12 +164,12 @@ let checkboxes = document.querySelectorAll('#activities-box > Label > input[type
 for (let i = 0; i < checkboxes.length; i++) {
     checkboxes[i].addEventListener('focus', (e) => {
         let focused = e.target;
-        console.log("Focused: ", focused);
+        //console.log("Focused: ", focused);
         focused.parentNode.classList.add('focus');
     });
     checkboxes[i].addEventListener('blur', (e) => {
         let blurred = e.target;
-        console.log("Focused: ", blurred);
+        //console.log("Focused: ", blurred);
         blurred.parentNode.classList.remove('focus');
 });
 }
@@ -181,8 +181,8 @@ document.querySelector('#activities-box').addEventListener('change', (e) => {
     if (clicked.type === 'checkbox') {
 // get the data-day-and-time attribute value and store in a clickedType variable
         let clickedType = e.target.getAttribute('data-day-and-time');
-        console.log('Clicked Target: ', clicked);
-        console.log('Clicked Type: ', clickedType);
+        //console.log('Clicked Target: ', clicked);
+        //console.log('Clicked Type: ', clickedType);
     // Loop over the checkboxes
         for (let i = 0; i < checkboxes.length; i++) {
     // create a variable to store the current iteration's dataype
@@ -220,10 +220,10 @@ document.querySelector('#activities-box').addEventListener('change', (e) => {
 ccExpireMonthElement.addEventListener('change', (e) => {
     let value = e.target.value;
     let inputHTML = e.target;
-    console.log(value);
-    console.log(inputHTML);
+    //console.log(value);
+    //console.log(inputHTML);
     if (isValidExpirationMonth(value)) {
-        console.log(ccExpireMonthElement.classList);
+        //console.log(ccExpireMonthElement.classList);
         validationPass(ccExpireMonthElement);
         
     } else {
@@ -235,7 +235,7 @@ ccExpireMonthElement.addEventListener('change', (e) => {
 ccExpireYearElement.addEventListener('change', (e) => {
     let value = e.target.value;
     let inputHTML = e.target;
-    console.log(value);  
+    //console.log(value);  
     if (isValidExpirationYear(value)) {
         validationPass(inputHTML);
     } else {
@@ -247,7 +247,7 @@ ccExpireYearElement.addEventListener('change', (e) => {
 ccCardNumberElement.addEventListener('keyup', (e) => {
     let value = e.target.value;
     let inputHTML = e.target;
-    console.log(value);  
+    //console.log(value);  
     if (isValidCCNumber(value)) {
         validationPass(inputHTML);
     } else {
@@ -259,7 +259,7 @@ ccCardNumberElement.addEventListener('keyup', (e) => {
 ccZipCodeElement.addEventListener('keyup', (e) => {
     let value = e.target.value;
     let inputHTML = e.target;
-    console.log(value);
+    //console.log(value);
     if (isValidZipCode(value)) {
         validationPass(inputHTML);
     } else {
@@ -271,7 +271,7 @@ ccZipCodeElement.addEventListener('keyup', (e) => {
 ccCVVElement.addEventListener('keyup', (e) => {
     let value = e.target.value;
     let inputHTML = e.target;
-    console.log(value);  
+    //console.log(value);  
     if (isValidCVVNumber(value)) {
         validationPass(inputHTML);
     } else {
@@ -282,7 +282,7 @@ ccCVVElement.addEventListener('keyup', (e) => {
 
 paymentMethodElement.addEventListener('change', (e) => {
   let paymentSelection = e.target.value;
-  console.log('Payment Selection', paymentSelection);
+  //console.log('Payment Selection', paymentSelection);
 
   if (paymentSelection === 'credit-card') {
     creditCardBlock.style.display = "inherit";
@@ -301,50 +301,53 @@ paymentMethodElement.addEventListener('change', (e) => {
 });
 // Add event Listener for form submit
 form.addEventListener('submit', (e) => {
-    console.log('Form Submitted Attempt!');
+    //console.log('Form Submitted Attempt!');
     if (checkoutTotal === 0) {
-        console.log('No Activities Prevented Submission');
+        //console.log('No Activities Prevented Submission');
         document.getElementById('activities-hint').classList.remove('hint');
         document.getElementById('activities-hint').style.color = 'red';
         e.preventDefault();
     }
     if (!isValidName(nameElement.value)) {
-        console.log('Invalid Name Prevented Submission');
+        //console.log('Invalid Name Prevented Submission');
         validationFail(nameElement);
         e.preventDefault();
     }
 
     if (!isValidEmail(emailElement.value)) {
-        console.log('Invalid email Prevented Submission');
+        //console.log('Invalid email Prevented Submission');
         validationFail(emailElement);
         e.preventDefault();
     }
     if (paymentMethodElement.value === 'credit-card') {
         if (!isValidExpirationMonth(ccExpireMonthElement.value)) {
-            console.log('Invalid expriation month Prevented Submission');
+            //console.log('Invalid expriation month Prevented Submission');
             validationFail(ccExpireMonthElement);
             e.preventDefault();
         }
         if (!isValidExpirationYear(ccExpireYearElement.value)) {
-            console.log('Invalid expiration Year Prevented Submission');
+            //console.log('Invalid expiration Year Prevented Submission');
             validationFail(ccExpireYearElement);
             e.preventDefault();
         }
         if (!isValidCCNumber(ccCardNumberElement.value)) {
-            console.log('Invalid CC number Prevented Submission');
+            //console.log('Invalid CC number Prevented Submission');
             validationFail(ccCardNumberElement);
             e.preventDefault();
         }
         if (!isValidZipCode(ccZipCodeElement.value)) {
-            console.log('Invalid Zip Code Prevented Submission');
+            //console.log('Invalid Zip Code Prevented Submission');
             validationFail(ccZipCodeElement);
             e.preventDefault();
         }
         if (!isValidCVVNumber(ccCVVElement.value)) {
-            console.log('Invalid CVV Prevented Submission');
+            //console.log('Invalid CVV Prevented Submission');
             validationFail(ccCVVElement);
             e.preventDefault();
-        }       
+        }            
+    } else if (paymentMethodElement.value === 'select method') {
+        console.log('Please select Payment Method');
+        e.preventDefault();   
     }
 });
 // preventDefault if one of the validation functions comes back false
