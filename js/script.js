@@ -22,20 +22,20 @@ const bitcoinInfoBlock = document.getElementById('bitcoin');
 
 // create ValidationPass and ValidationFail functions that update the valid and error CSS 
 function validationPass(domObject) {
-    //console.log("Validation passed from validationPass", domObject)
+    //console.log("Validation passed from validationPass", domObject);
     domObject.classList.remove('error');
     let hint = domObject.nextElementSibling;
-    if (hint.classList.contains('hint')) {
+    if (hint != null && hint.classList.contains('hint')) {
         hint.style.display = "none";
         console.log(hint.style.display);
     }
 }
 function validationFail(domObject) {
-    console.log('failed!');
+    console.log('failed!', domObject);
     domObject.classList.add('error');
     let hint = domObject.nextElementSibling;
     console.log(hint);
-    if (hint.classList.contains('hint')) {
+    if (hint != null && hint.classList.contains('hint')) {
         hint.style.display = "inherit";
     }
 }
@@ -45,7 +45,7 @@ function isValidName(name) {
     return /./.test(name);
 }
 function isValidEmail(email) {
-    let emailInput = email;
+    //let emailInput = email;
     //console.log('Email Input from isValidEmail', emailInput);
     // email regex from https://emailregex.com/
     let emailRegex = /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/;
@@ -54,22 +54,29 @@ function isValidEmail(email) {
 
 function isValidExpirationMonth(expirationMonth) {
     console.log('Check for Valid Expiration Month');
+    //https://stackoverflow.com/questions/32435949/regex-to-allow-only-number-between-1-to-12
+    return /1[0-2]|[1-9]/.test(expirationMonth);
 }
 
 function isValidExpirationYear(expirationYear) {
     console.log('Check for Valid Expiration Year');
+    //https://stackoverflow.com/questions/4374185/regular-expression-match-to-test-for-a-valid-year
+    return /^\d{4}$/.test(expirationYear);
 }
 
 function isValidCCNumber(ccNumber) {
     console.log('Check for Valid CC');
+    return /^\d{13}\d?\d?\d?$/.test(ccNumber);
 }
 
 function isValidCVVNumber(cvvNumber) {
     console.log('Check for Valid CVV');
+    return /^\d{3}$/.test(cvvNumber);
 }
 
 function isValidZipCode(zipCode) {
     console.log('Check for Valid ZipCode');
+    return /^\d{5}$/.test(zipCode);
 }
 
 // create isValid variable that stores the result of a regex test on the input
@@ -197,28 +204,65 @@ document.querySelector('#activities-box').addEventListener('change', (e) => {
 
 ccExpireMonthElement.addEventListener('change', (e) => {
     let value = e.target.value;
-    isValidExpirationMonth(value);
+    let inputHTML = e.target;
+    console.log(value);
+    console.log(inputHTML);
+    if (isValidExpirationMonth(value)) {
+        console.log(ccExpireMonthElement.classList);
+        validationPass(ccExpireMonthElement);
+        
+    } else {
+        validationFail(inputHTML);
+    }
 });
 
 
 ccExpireYearElement.addEventListener('change', (e) => {
     let value = e.target.value;
-    isValidExpirationYear(value);
+    let inputHTML = e.target;
+    console.log(value);  
+    if (isValidExpirationYear(value)) {
+        validationPass(inputHTML);
+    } else {
+        //call validation fail function
+        validationFail(inputHTML);
+    }
 });
 
 ccCardNumberElement.addEventListener('keyup', (e) => {
     let value = e.target.value;
-    isValidCCNumber(value);
+    let inputHTML = e.target;
+    console.log(value);  
+    if (isValidCCNumber(value)) {
+        validationPass(inputHTML);
+    } else {
+        //call validation fail function
+        validationFail(inputHTML);
+    }
 });
 
 ccZipCodeElement.addEventListener('keyup', (e) => {
     let value = e.target.value;
-    isValidZipCode(value);
+    let inputHTML = e.target;
+    console.log(value);
+    if (isValidZipCode(value)) {
+        validationPass(inputHTML);
+    } else {
+        //call validation fail function
+        validationFail(inputHTML);
+    }
 });
 
 ccCVVElement.addEventListener('keyup', (e) => {
     let value = e.target.value;
-    isValidCVVNumber(value);
+    let inputHTML = e.target;
+    console.log(value);  
+    if (isValidCVVNumber(value)) {
+        validationPass(inputHTML);
+    } else {
+        //call validation fail function
+        validationFail(inputHTML);
+    }
 });
 
 paymentMethodElement.addEventListener('change', (e) => {
