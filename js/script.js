@@ -159,19 +159,18 @@ designElement.addEventListener('change', (e) => {
 let checkoutTotal = 0;
 // Create a variable to store all of the checkboxes
 let checkboxes = document.querySelectorAll('#activities-box > Label > input[type="checkbox"]');
-
-document.querySelector('#activities-box').addEventListener('focus', (e) => {
-    let clicked = e.target;
-    if (clicked.type === 'checkbox') {
-        clicked.classList.add('focus');
-    }
+for (let i = 0; i < checkboxes.length; i++) {
+    checkboxes[i].addEventListener('focus', (e) => {
+        let focused = e.target;
+        console.log("Focused: ", focused);
+        focused.parentNode.classList.add('focus');
+    });
+    checkboxes[i].addEventListener('blur', (e) => {
+        let blurred = e.target;
+        console.log("Focused: ", blurred);
+        blurred.parentNode.classList.remove('focus');
 });
-document.querySelector('#activities-box').addEventListener('blur', (e) => {
-    let clicked = e.target;
-    if (clicked.type === 'checkbox') {
-        clicked.classList.remove('focus');
-    }
-});
+}
 // Create Event listener for checkboxes
 document.querySelector('#activities-box').addEventListener('change', (e) => {
 //  created a clicked variable and store e.target
